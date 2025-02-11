@@ -24,6 +24,11 @@ model User {
   isVerified Boolean @default(false) @map("is_verified")
 
   isEmailVerified Boolean @default(false) @map("is_email_verified")
+  isTotpEnabled   Boolean @default(false) @map("is_totp_enabled")
+  totpSecret      String? @map("totp_secret")
+
+  isDeactivated Boolean @default(false) @map("is_deactivated")
+  deactivateAt DateTime? @map("deactivate_at")
 
   tokens Token[]
 
@@ -36,11 +41,11 @@ model User {
 model Token {
   id String @id @default(uuid())
 
-  token String @unique
-  type TokenType
-  expiresIn DateTime @map("expires_in")
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
 
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String? @map("user_id")
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -52,6 +57,7 @@ model Token {
 enum TokenType {
   EMAIL_VERIFY
   PASSWORD_RESET
+  DEACTIVATE_ACCOUNT
 
-@@map("token_types")
+  @@map("token_types")
 }

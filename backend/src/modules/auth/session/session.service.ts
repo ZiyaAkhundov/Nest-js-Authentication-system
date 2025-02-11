@@ -9,14 +9,16 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { verify } from 'argon2'
 import type { Request } from 'express'
+import { TOTP } from 'otpauth'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { RedisService } from '@/src/core/redis/redis.service'
 import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
+import { destroySession, saveSession } from '@/src/shared/utils/session.util'
+
+import { VerificationService } from '../verification/verification.service'
 
 import { LoginInput } from './inputs/login.input'
-import { destroySession, saveSession } from '@/src/shared/utils/session.util'
-import { VerificationService } from '../verification/verification.service'
 
 @Injectable()
 export class SessionService {
@@ -75,7 +77,7 @@ export class SessionService {
 	}
 
 	public async login(req: Request, input: LoginInput, userAgent: string) {
-		const { login, password } = input
+		const { login, password, pin } = input
 
 		const user = await this.prismaService.user.findFirst({
 			where: {
@@ -96,15 +98,56 @@ export class SessionService {
 			throw new UnauthorizedException('Credentials is not true')
 		}
 
-		if(!user.isEmailVerified) {
+		if (!user.isEmailVerified) {
 			await this.verificationService.sendVerificationToken(user)
 
-			throw new BadRequestException('Account not verified. Please check your email for confirmation.')
+			throw new BadRequestException(
+				'Account not verified. Please check your email for confirmation.'
+			)
+		}
+
+		if (user.isTotpEnabled) {
+			if (!pin) {
+				return {
+					message: 'A code is required to complete authorization'
+				}
+			}
+
+			const totp = new TOTP({
+				issuer: 'PSManagement',
+				label: `${user.email}`,
+				algorithm: 'SHA1',
+				digits: 6,
+				secret: user.totpSecret?.toString()
+			})
+
+			const delta = totp.validate({ token: pin })
+
+			if (delta === null) {
+				throw new BadRequestException('Invalid code')
+			}
+		}
+
+		if(user.isDeactivated) {
+			await this.prismaService.user.update({
+				where: {
+					id: user.id
+				},
+				data: {
+					isDeactivated: false,
+					deactivateAt: null
+				}
+			})
 		}
 
 		const metadata = getSessionMetadata(req, userAgent)
 
-		return saveSession(req, user, metadata)
+		await saveSession(req, user, metadata)
+
+		return {
+			user: user,
+			message: null
+		}
 	}
 
 	public async logout(req: Request) {
