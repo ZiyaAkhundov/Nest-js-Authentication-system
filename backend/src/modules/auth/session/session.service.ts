@@ -2,7 +2,6 @@ import {
 	BadRequestException,
 	ConflictException,
 	Injectable,
-	InternalServerErrorException,
 	NotFoundException,
 	UnauthorizedException
 } from '@nestjs/common'
@@ -142,10 +141,8 @@ export class SessionService {
 
 		const metadata = getSessionMetadata(req, userAgent)
 
-		await saveSession(req, user, metadata)
-
 		return {
-			user: user,
+			user: saveSession(req, user, metadata),
 			message: null
 		}
 	}
