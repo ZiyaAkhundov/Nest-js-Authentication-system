@@ -3,15 +3,15 @@ import { Field, ID, ObjectType } from '@nestjs/graphql'
 import type { User } from '@/prisma/generated'
 
 @ObjectType()
-export class UserModel implements User {
+export class UserModel implements Omit<User, 'password' | 'totpSecret'> {
 	@Field(() => ID)
 	public id: string
 
 	@Field(() => String)
 	public email: string
 
-	@Field(() => String)
-	public password: string
+	// @Field(() => String)
+	// public password: string
 
 	@Field(() => String)
 	public username: string
@@ -34,8 +34,8 @@ export class UserModel implements User {
 	@Field(() => Boolean)
 	public isTotpEnabled: boolean
 
-	@Field(() => String, { nullable: true})
-	public totpSecret: string
+	// @Field(() => String, { nullable: true})
+	// public totpSecret: string
 
 	@Field(() => Boolean)
 	public isDeactivated: boolean

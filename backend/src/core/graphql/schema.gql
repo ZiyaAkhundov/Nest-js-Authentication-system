@@ -109,8 +109,6 @@ type UserModel {
   isEmailVerified: Boolean!
   isTotpEnabled: Boolean!
   isVerified: Boolean!
-  password: String!
-  totpSecret: String
   updatedAt: DateTime!
   username: String!
 }
