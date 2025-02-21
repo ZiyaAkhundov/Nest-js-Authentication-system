@@ -277,7 +277,3 @@ This document provides an overview of the GraphQL schema used in the project, de
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-
-For any questions or inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
