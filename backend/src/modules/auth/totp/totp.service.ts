@@ -15,7 +15,7 @@ export class TotpService {
         const secret = encode(randomBytes(15)).replace(/=/g, '').substring(0,24)
         
         const totp = new TOTP({
-            issuer: 'PSManagement',
+            issuer: 'Nestjs TOTP',
             label: `${user.email}`,
             algorithm: 'SHA1',
             digits: 6,
@@ -32,7 +32,7 @@ export class TotpService {
         const { secret, pin } = input
 
         const totp = new TOTP({
-            issuer: 'PSManagement',
+            issuer: 'Nestjs TOTP',
             label: `${user.email}`,
             algorithm: 'SHA1',
             digits: 6,
