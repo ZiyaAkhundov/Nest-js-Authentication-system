@@ -7,8 +7,9 @@ import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
 import { PasswordRecoveryTemplate } from './templates/password-recovery.template'
 import { verificationtemplate } from './templates/verification.template'
-import { PasswordResetNotificationTemplate } from './templates/password-reset-notification.template'
+import { PasswordChangeNotificationTemplate } from './templates/password-reset-notification.template'
 import { DeactivateTemplate } from './templates/deactivate.template'
+import { PasswordChangeTemplate } from './templates/password-change.template'
 
 @Injectable()
 export class MailService {
@@ -37,12 +38,12 @@ export class MailService {
 		return this.sendMail(email, 'Password reset', html)
 	}
 
-	public async sendPasswordResetNotificationMail(
+	public async sendPasswordChangeNotificationMail(
 		email: string,
 		metadata: SessionMetadata
 	) {
 		const html = await render(
-			PasswordResetNotificationTemplate({ metadata })
+			PasswordChangeNotificationTemplate({ metadata })
 		)
 
 		return this.sendMail(email, 'Password has been changed', html)
@@ -66,5 +67,18 @@ export class MailService {
 		)
 
 		return this.sendMail(email, 'Account deactivation', html)
+	}
+
+	
+	public async sendPasswordChangeToken(
+		email: string,
+		token: string,
+		metadata: SessionMetadata
+	) {
+		const html = await render(
+			PasswordChangeTemplate({ token, metadata })
+		)
+
+		return this.sendMail(email, 'Password change', html)
 	}
 }

@@ -19,7 +19,7 @@ export const DeactivateTemplate = ({ metadata, token}: DeactivateTemplateProps) 
                     <Heading className='text-3xl text-black font-bold'>Request to deactivate an account</Heading>
                     <Text className='text-base text-black mt-2'>
                     You have initiated the process of deactivating your account on 
-                    <b>PS Management</b> platform.
+                    <b>Authentication service</b> platform.
                     </Text>
                 </Section>
 
@@ -31,7 +31,7 @@ export const DeactivateTemplate = ({ metadata, token}: DeactivateTemplateProps) 
                             {token}
                         </Heading>
                         <Text className='text-black'>
-                        This code is valid for 5 minutes.
+                            This code is valid for 5 minutes.
                         </Text>
                 </Section>
 
@@ -53,8 +53,8 @@ export const DeactivateTemplate = ({ metadata, token}: DeactivateTemplateProps) 
                 <Section className='text-center mt-8'>
                     <Text className='text-gray-600'>
                     If you have any questions or encounter any difficulties, please do not hesitate to contact our support team at {''}
-                        <Link href='mailto:programmerschoolstudio@gmail.com' className='text-[#1649ff] underline'>
-                            PS Manager support team
+                        <Link href='mailto:example@gmail.com' className='text-[#1649ff] underline'>
+                        Authentication service support team
                         </Link>
                     </Text>
                 </Section>

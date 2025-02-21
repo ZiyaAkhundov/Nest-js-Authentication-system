@@ -162,6 +162,7 @@ exports.Prisma.NullsOrder = {
 exports.TokenType = exports.$Enums.TokenType = {
   EMAIL_VERIFY: 'EMAIL_VERIFY',
   PASSWORD_RESET: 'PASSWORD_RESET',
+  PASSWORD_CHANGE: 'PASSWORD_CHANGE',
   DEACTIVATE_ACCOUNT: 'DEACTIVATE_ACCOUNT'
 };
 

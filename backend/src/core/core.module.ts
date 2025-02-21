@@ -15,6 +15,7 @@ import { MailModule } from '../modules/libs/mail/mail.module'
 import { PasswordRecoveryModule } from '../modules/auth/password-recovery/password-recovery.module'
 import { TotpModule } from '../modules/auth/totp/totp.module'
 import { DeactivateModule } from '../modules/auth/deactivate/deactivate.module'
+import { PasswordChangeModule } from '../modules/auth/password-change/password-change.module'
 
 @Module({
 	imports: [
@@ -36,7 +37,8 @@ import { DeactivateModule } from '../modules/auth/deactivate/deactivate.module'
 		VerificationModule,
 		PasswordRecoveryModule,
 		TotpModule,
-		DeactivateModule
+		DeactivateModule,
+		PasswordChangeModule
 	]
 })
 export class CoreModule {}

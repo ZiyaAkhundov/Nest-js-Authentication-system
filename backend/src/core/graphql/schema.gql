@@ -57,6 +57,7 @@ type Mutation {
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
   newPassword(data: NewPasswordInput!): Boolean!
+  passwordChange(data: PasswordChangeInput!): PasswordChangeModel!
   removeSession(id: String!): Boolean!
   resetPassword(data: ResetPasswordInput!): Boolean!
   verifyAccount(data: VerificationInput!): UserModel!
@@ -66,6 +67,18 @@ input NewPasswordInput {
   password: String!
   passwordRepeat: String!
   token: String!
+}
+
+input PasswordChangeInput {
+  currentPassword: String!
+  password: String!
+  passwordRepeat: String!
+  pin: String
+}
+
+type PasswordChangeModel {
+  message: String
+  status: Boolean
 }
 
 type Query {

@@ -28,8 +28,8 @@ export const verificationtemplate = ({domain, token}: verificationTemplateProps)
                 <Section className='text-center mt-8'>
                     <Text className='text-gray-600'>
                     If you have any questions or encounter any difficulties, please do not hesitate to contact our support team at {''}
-                        <Link href='mailto:programmerschoolstudio@gmail.com' className='text-[#1649ff] underline'>
-                            PS Manager support team
+                        <Link href='mailto:example@gmail.com' className='text-[#1649ff] underline'>
+                            Authentication service support team
                         </Link>
                     </Text>
                 </Section>

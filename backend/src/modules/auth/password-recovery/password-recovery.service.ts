@@ -96,7 +96,7 @@ export class PasswordRecoveryService {
 
 		const metadata = getSessionMetadata(req, userAgent)
 
-		await this.mailService.sendPasswordResetNotificationMail(
+		await this.mailService.sendPasswordChangeNotificationMail(
 			user.email,
 			metadata
 		)

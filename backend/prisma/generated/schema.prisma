@@ -57,6 +57,7 @@ model Token {
 enum TokenType {
   EMAIL_VERIFY
   PASSWORD_RESET
+  PASSWORD_CHANGE
   DEACTIVATE_ACCOUNT
 
   @@map("token_types")
