@@ -41,42 +41,41 @@ This project is a Authenctication System built using NestJS, a progressive Node.
 3. Set up the environment variables:
     Create a `.env` file in the root directory and add the following:
     ```env
-NODE_ENV='development'
+    NODE_ENV='development'
 
-APPLICATION_PORT=4000
-APPLICATION_URL='http://localhost:${APPLICATION_PORT}'
-GRAPHQL_PREFIX='/graphql'
-ALLOWED_ORIGIN='http://localhost:3000'
+    APPLICATION_PORT=4000
+    APPLICATION_URL='http://localhost:${APPLICATION_PORT}'
+    GRAPHQL_PREFIX='/graphql'
+    ALLOWED_ORIGIN='http://localhost:3000'
 
-COOKIES_SECRET=your_secret__key
-SESSION_SECRET=your_secret__key
-SESSION_NAME='session'
-SESSION_DOMAIN='localhost'
-SESSION_MAX_AGE='30d'
-SESSION_HTTP_ONLY=true
-SESSION_SECURE=false
-SESSION_FOLDER='sessions:'
+    COOKIES_SECRET=your_secret__key
+    SESSION_SECRET=your_secret__key
+    SESSION_NAME='session'
+    SESSION_DOMAIN='localhost'
+    SESSION_MAX_AGE='30d'
+    SESSION_HTTP_ONLY=true
+    SESSION_SECURE=false
+    SESSION_FOLDER='sessions:'
 
+    POSTGRES_USER=your_postgres_name
+    POSTGRES_PASSWORD=your_postgres_password
+    POSTGRES_HOST='localhost' 
+    POSTGRES_PORT='5433'   
+    POSTGRES_DATABASE=your_database_name
 
-POSTGRES_USER=your_postgres_name
-POSTGRES_PASSWORD=your_postgres_password
-POSTGRES_HOST='localhost' 
-POSTGRES_PORT='5433'   
-POSTGRES_DATABASE=your_database_name
+    POSTGRES_URI='postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?schema=public'
 
-POSTGRES_URI='postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}?schema=public'
+    REDIS_USER=your_redis_name
+    REDIS_PASSWORD=your_redis_password
+    REDIS_HOST='localhost' 
+    REDIS_PORT='6379'
 
-REDIS_USER=your_redis_name
-REDIS_PASSWORD=your_redis_password
-REDIS_HOST='localhost' 
-REDIS_PORT='6379'
+    REDIS_URI='redis://${REDIS_USER}:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}'
 
-REDIS_URI='redis://${REDIS_USER}:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}'
-
-MAIL_HOST=your_email_host
-MAIL_PORT=your_email_port
-MAIL_LOGIN=your_email_login
-MAIL_PASSWORD=your_email_password
+    MAIL_HOST=your_email_host
+    MAIL_PORT=your_email_port
+    MAIL_LOGIN=your_email_login
+    MAIL_PASSWORD=your_email_password
     ```
 
 4. Run the Prisma set up the database schema:
