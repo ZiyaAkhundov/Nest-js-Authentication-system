@@ -36,7 +36,7 @@ This project is an Authentication System built using NestJS, a progressive Node.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/project-management.git
+    git clone https://github.com/ZiyaAkhundov/Nest-js-Authentication-system.git
     cd project-management
     ```
 
