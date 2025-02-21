@@ -84,13 +84,17 @@ This project is an Authentication System built using NestJS, a progressive Node.
     MAIL_LOGIN=your_email_login
     MAIL_PASSWORD=your_email_password
     ```
+4. Run docker
+   ```sh
+    docker-compose up --build
+    ```
 
-4. Run the Prisma set up the database schema:
+5. Run the Prisma set up the database schema:
     ```sh
     npx prisma db push
     ```
 
-5. Start the development server:
+6. Start the development server:
     ```sh
     npm run start:dev
     ```
